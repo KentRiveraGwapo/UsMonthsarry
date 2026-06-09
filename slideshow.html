@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6th Monthsarry Slideshow From Kent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fff1f7',
+                            100: '#ffe4f1',
+                            200: '#ffc9e3',
+                            300: '#ff9fc8',
+                            400: '#ff69b4',
+                            500: '#ff1493',
+                            600: '#e10d80',
+                            700: '#b30a65',
+                            800: '#8a084f',
+                            900: '#5f0637'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { color-scheme: light; }
+        body { font-family: Poppins, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif; }
+        .font-display { font-family: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
+        .font-script { font-family: "Great Vibes", cursive; }
+        ::selection { background: rgba(255, 105, 180, 0.25); }
+
+        @keyframes floatSoft {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -10px, 0) scale(1.02); }
+        }
+        .float-soft { animation: floatSoft 7s ease-in-out infinite; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translate3d(0, 12px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        .fade-up { animation: fadeUp 600ms ease both; }
+
+        .slide-frame {
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-br from-blush-50 via-white to-blush-100 text-slate-800 antialiased">
+    <main class="relative min-h-screen px-6 py-8 sm:py-10">
+        <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+            <div class="float-soft absolute -top-20 left-1/2 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-blush-200/40 blur-3xl"></div>
+            <div class="float-soft absolute -bottom-28 -left-16 h-[24rem] w-[24rem] rounded-full bg-blush-300/25 blur-3xl" style="animation-delay:-2s"></div>
+            <div class="float-soft absolute top-1/3 -right-24 h-[22rem] w-[22rem] rounded-full bg-blush-100/80 blur-3xl" style="animation-delay:-4s"></div>
+        </div>
+
+        <div class="mx-auto w-full max-w-6xl">
+            <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div class="fade-up">
+                    <p class="text-sm font-medium tracking-[0.3em] text-blush-700 uppercase">Photo Slideshow</p>
+                    <h1 class="mt-2 text-3xl sm:text-4xl md:text-5xl font-display font-semibold italic text-blush-800">Six Beautiful Months</h1>
+                    <p class="mt-3 max-w-2xl text-slate-600">A gentle collection of memories from the photos in your slideshow folder.</p>
+                </div>
+                <a href="index.html" class="inline-flex items-center justify-center rounded-2xl bg-white/80 px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-blush-100 transition hover:bg-white hover:-translate-y-0.5">
+                    Back to message
+                </a>
+            </div>
+
+            <section class="grid grid-cols-1 lg:grid-cols-[1.7fr_0.8fr] gap-6 items-start">
+                <div class="fade-up slide-frame overflow-hidden rounded-[2rem] bg-white/75 p-3 sm:p-4">
+                    <div class="relative overflow-hidden rounded-[1.5rem] bg-black/5">
+                        <img id="slideshow-image" src="images/slideshow/040d4766-0e7c-441d-b0bb-c88aa8585ae9.jpg" alt="Slideshow photo" class="h-[24rem] sm:h-[30rem] lg:h-[34rem] w-full object-cover transition-opacity duration-500">
+                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent p-5 text-white">
+                            <p id="slideshow-caption" class="text-sm sm:text-base">Photo 1 of 19</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="fade-up space-y-4">
+                    <div class="rounded-[2rem] bg-white/75 p-5 shadow-sm ring-1 ring-white/80">
+                        <p class="text-xs font-semibold tracking-[0.3em] text-blush-700 uppercase">Controls</p>
+                        <div class="mt-4 grid grid-cols-3 gap-3">
+                            <button id="prev-btn" class="rounded-2xl bg-blush-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blush-700">Prev</button>
+                            <button id="play-btn" class="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate-700 ring-1 ring-blush-100 transition hover:bg-blush-50">Pause</button>
+                            <button id="next-btn" class="rounded-2xl bg-blush-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blush-700">Next</button>
+                        </div>
+                        <p class="mt-4 text-sm text-slate-600">The slideshow rotates through the photos in <span class="font-semibold text-blush-700">images/slideshow</span>.</p>
+                    </div>
+
+                    <div class="rounded-[2rem] bg-white/75 p-5 shadow-sm ring-1 ring-white/80">
+                        <p class="text-xs font-semibold tracking-[0.3em] text-blush-700 uppercase">Moments</p>
+                        <div id="thumbnail-strip" class="mt-4 grid grid-cols-4 gap-2"></div>
+                    </div>
+                </aside>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const slideshowImages = [
+            'images/slideshow/040d4766-0e7c-441d-b0bb-c88aa8585ae9.jpg',
+            'images/slideshow/055f9691-0291-483b-9154-d6a832ec3b55.jpg',
+            'images/slideshow/09a9051f-5aa9-4970-9005-e5db31b998e8.jpg',
+            'images/slideshow/228e3cef-b6d0-49d3-9f86-b32aa5518a05.jpg',
+            'images/slideshow/393d996d-f52d-40af-a0df-298e13316c49.jpg',
+            'images/slideshow/416ed01b-65fe-40b5-9621-0422ae86c5fc.jpg',
+            'images/slideshow/43857211-b593-4931-b92c-bebfbc3a3fc1.jpg',
+            'images/slideshow/51fd69e5-72d9-4cbe-885f-87ce3aa082d1.jpg',
+            'images/slideshow/5b403ba7-0538-46c6-b323-ab5f46d2fe6d.jpg',
+            'images/slideshow/730ae264-81d2-44a7-97ac-a09cd796df73.jpg',
+            'images/slideshow/73b55fb6-1af2-4e72-ae32-b19ca8d918ab.jpg',
+            'images/slideshow/7f3b7769-926a-4b77-a94e-e80e66e1d0b8.jpg',
+            'images/slideshow/835fc26c-7f11-4a09-98e6-c68252168a71.jpg',
+            'images/slideshow/a42039c9-cfce-4967-8389-d84593772ad8.jpg',
+            'images/slideshow/a68baaac-0d30-434d-8259-9d696e75208b.jpg',
+            'images/slideshow/b4cf4379-30a4-403f-839a-6bd43d2ba2ac.jpg',
+            'images/slideshow/e6861e40-a844-4309-856a-d2470b4a8d1c.jpg',
+            'images/slideshow/e8d2ff55-e5d5-479b-8e9e-2696e2c1fad1.jpg',
+            'images/slideshow/faa05bbd-cf06-4872-a275-f6c81d66833e.jpg'
+        ];
+
+        let currentIndex = 0;
+        let isPlaying = true;
+        let timerId = null;
+
+        const imageElement = document.getElementById('slideshow-image');
+        const captionElement = document.getElementById('slideshow-caption');
+        const thumbnailStrip = document.getElementById('thumbnail-strip');
+        const prevBtn = document.getElementById('prev-btn');
+        const playBtn = document.getElementById('play-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function renderSlide(index) {
+            currentIndex = (index + slideshowImages.length) % slideshowImages.length;
+            imageElement.classList.add('opacity-0');
+            window.setTimeout(() => {
+                imageElement.src = slideshowImages[currentIndex];
+                imageElement.alt = `Slideshow photo ${currentIndex + 1}`;
+                captionElement.textContent = `Photo ${currentIndex + 1} of ${slideshowImages.length}`;
+                updateThumbnails();
+                imageElement.classList.remove('opacity-0');
+            }, 180);
+        }
+
+        function nextSlide() {
+            renderSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            renderSlide(currentIndex - 1);
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            timerId = window.setInterval(() => {
+                if (isPlaying) nextSlide();
+            }, 3200);
+        }
+
+        function stopAutoPlay() {
+            if (timerId) {
+                window.clearInterval(timerId);
+                timerId = null;
+            }
+        }
+
+        function updateThumbnails() {
+            thumbnailStrip.innerHTML = '';
+            slideshowImages.forEach((imagePath, index) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = [
+                    'overflow-hidden',
+                    'rounded-2xl',
+                    'ring-2',
+                    'transition',
+                    index === currentIndex ? 'ring-blush-500' : 'ring-transparent hover:ring-blush-200'
+                ].join(' ');
+                button.innerHTML = `<img src="${imagePath}" alt="Thumbnail ${index + 1}" class="h-20 w-full object-cover">`;
+                button.addEventListener('click', () => renderSlide(index));
+                thumbnailStrip.appendChild(button);
+            });
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playBtn.textContent = isPlaying ? 'Pause' : 'Play';
+        });
+
+        renderSlide(0);
+        updateThumbnails();
+        startAutoPlay();
+
+        window.addEventListener('beforeunload', stopAutoPlay);
+    </script>
+</body>
+</html>
